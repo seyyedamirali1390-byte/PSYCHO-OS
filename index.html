@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#09090d"><title>PSYCHO OS — NEXUS HYBRID</title>
+<style>
+:root{--bg:#08090e;--panel:rgba(19,20,29,.82);--panel2:#14151e;--line:rgba(255,255,255,.09);--muted:#9698a8;--text:#f4f4f7;--red:#ff304d;--red2:#a80e2b;--glow:rgba(255,35,70,.22);--green:#5de0ae;--yellow:#ffd166;--radius:22px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,"Segoe UI",sans-serif;min-height:100vh;overflow-x:hidden}
+button,input,textarea,select{font:inherit}button{cursor:pointer;color:inherit}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+#ambient{position:fixed;inset:0;width:100%;height:100%;z-index:-3;opacity:.65}
+.bg-orb{position:fixed;z-index:-2;width:440px;height:440px;border-radius:50%;filter:blur(95px);opacity:.13;pointer-events:none;background:#e51b45;top:-190px;right:-130px;animation:float 16s ease-in-out infinite alternate}
+.bg-orb.two{width:380px;height:380px;background:#522cff;top:auto;bottom:-230px;left:-140px;animation-delay:-7s}
+.grid-bg{position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.14;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
+@keyframes float{to{transform:translate(45px,55px) scale(1.13)}}@keyframes pulse{50%{box-shadow:0 0 0 9px rgba(255,48,77,0)}}@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.app{max-width:1440px;margin:auto;padding:22px 24px 50px}.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px;border:1px solid var(--line);background:rgba(10,11,17,.72);backdrop-filter:blur(18px);border-radius:24px;padding:12px 18px;position:sticky;top:12px;z-index:20;box-shadow:0 14px 45px #0003}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}.brand-mark{width:46px;height:46px;border-radius:15px;background:linear-gradient(145deg,#ff3858,#7c0927);display:grid;place-items:center;font-weight:1000;font-size:18px;box-shadow:0 8px 28px var(--glow);letter-spacing:-2px}.brand-name{font-weight:900;letter-spacing:1.5px;font-size:16px}.brand-sub{color:var(--muted);font-size:10px;margin-top:4px;letter-spacing:1.6px;direction:ltr;text-align:right}
+.top-actions{display:flex;align-items:center;gap:9px}.icon-btn,.avatar-btn{border:1px solid var(--line);background:#ffffff08;border-radius:14px;min-width:42px;height:42px;display:grid;place-items:center;transition:.2s}.icon-btn:hover,.avatar-btn:hover{border-color:#ff4965;background:#ff304d18;transform:translateY(-2px)}.avatar-btn{width:42px;border-radius:50%;background:linear-gradient(145deg,#292b39,#11121a);font-weight:bold;color:#ff8194}
+.layout{display:grid;grid-template-columns:245px minmax(0,1fr);gap:22px;margin-top:22px}.sidebar{align-self:start;position:sticky;top:108px;border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(18px);border-radius:24px;padding:14px}.nav-label{font-size:10px;color:#777b8e;padding:12px 12px 8px;letter-spacing:1.5px}.nav-btn{width:100%;display:flex;align-items:center;gap:12px;border:0;background:transparent;color:#b9bac6;padding:13px 14px;border-radius:14px;text-align:right;margin:3px 0;transition:.2s;font-size:13px}.nav-btn .ico{font-size:18px;width:23px;text-align:center}.nav-btn:hover{background:#ffffff0a;color:white;transform:translateX(-2px)}.nav-btn.active{color:white;background:linear-gradient(100deg,#ff304d2b,#ff304d08);box-shadow:inset -3px 0 var(--red)}.side-bottom{margin-top:18px;padding:15px;border-radius:17px;background:linear-gradient(145deg,#ff304d20,#ffffff05);border:1px solid #ff304d25}.side-bottom b{font-size:12px}.side-bottom p{font-size:10px;color:var(--muted);line-height:1.8;margin:7px 0 0}
+main{min-width:0}.view{display:none;animation:rise .32s ease}.view.active{display:block}.hero{position:relative;overflow:hidden;border:1px solid #ff304d38;background:linear-gradient(115deg,rgba(94,9,30,.78),rgba(20,17,27,.88) 55%,rgba(20,20,30,.8));border-radius:28px;padding:30px;min-height:230px;box-shadow:0 20px 65px #0003}.hero:after{content:"Ψ";position:absolute;left:5%;top:-45px;font-size:250px;font-weight:1000;color:#ffffff08;line-height:1;pointer-events:none}.eyebrow{font-size:10px;color:#ff9aaa;letter-spacing:2px;direction:ltr;text-align:right}.hero h1{font-size:clamp(25px,4vw,42px);margin:14px 0 8px;letter-spacing:-1.2px}.hero p{max-width:570px;color:#c2bbc4;font-size:13px;line-height:2;margin:0}.hero-row{display:flex;align-items:end;justify-content:space-between;gap:20px;position:relative;z-index:1}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.btn{border:1px solid var(--line);background:#ffffff0a;padding:12px 17px;border-radius:14px;font-size:12px;font-weight:700;transition:.2s}.btn:hover{transform:translateY(-2px);border-color:#ff526c;background:#ff304d18}.btn.primary{border:0;background:linear-gradient(135deg,#ff405d,#b30c32);box-shadow:0 8px 25px #ff304d35}.btn.primary:hover{filter:brightness(1.12)}.btn.small{padding:9px 12px;font-size:11px}.status-pill{border:1px solid #5de0ae55;color:#8ef0c9;background:#5de0ae12;border-radius:99px;padding:8px 12px;font-size:10px;white-space:nowrap}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:25px 2px 13px}.section-head h2{font-size:16px;margin:0}.section-head span{font-size:10px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:15px}.stat,.card{border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(14px);border-radius:20px;padding:17px;min-width:0}.stat .s-icon{font-size:20px}.stat strong{display:block;font-size:22px;margin:12px 0 4px}.stat small{color:var(--muted);font-size:10px}
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.quick{display:flex;align-items:center;gap:13px;text-align:right;width:100%;border:1px solid var(--line);background:var(--panel);border-radius:19px;padding:17px;transition:.2s}.quick:hover{border-color:#ff435f80;transform:translateY(-3px);box-shadow:0 12px 30px #0003}.quick .q-icon{width:43px;height:43px;display:grid;place-items:center;background:#ff304d18;border-radius:14px;font-size:20px}.quick b{font-size:12px;display:block}.quick small{color:var(--muted);font-size:10px;display:block;margin-top:5px}
+.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.project{position:relative;overflow:hidden;min-height:190px;display:flex;flex-direction:column;justify-content:space-between}.project:before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;filter:blur(55px);opacity:.18;left:-60px;top:-60px;background:var(--accent,#ff304d)}.project>*{position:relative}.project-top{display:flex;justify-content:space-between;align-items:center}.project-symbol{width:45px;height:45px;border-radius:15px;display:grid;place-items:center;background:color-mix(in srgb,var(--accent,#ff304d) 18%,transparent);font-size:22px}.tag{font-size:9px;border:1px solid var(--line);color:#c4c4cf;border-radius:99px;padding:6px 9px}.project h3{font-size:17px;margin:16px 0 7px}.project p{font-size:11px;color:var(--muted);line-height:1.9;margin:0 0 15px}.project-foot{display:flex;align-items:center;justify-content:space-between}.text-link{color:#ff7c91;font-size:11px;border:0;background:none;padding:5px}.text-link:hover{color:white}
+.two-col{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}.field{display:flex;flex-direction:column;gap:7px;margin:12px 0}.field label{font-size:11px;color:#c8c8d2}.field input,.field textarea,.field select{width:100%;background:#090a10;border:1px solid var(--line);border-radius:13px;padding:12px;color:white;font-size:12px;resize:vertical}.field textarea{min-height:105px;line-height:1.8}.muted{color:var(--muted);font-size:11px;line-height:1.9}
+.list{display:flex;flex-direction:column;gap:9px}.list-item{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--line);background:#ffffff05;padding:12px;border-radius:14px}.list-item .item-main{flex:1;min-width:0}.list-item b{font-size:12px}.list-item p{font-size:10px;color:var(--muted);line-height:1.8;margin:5px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}.item-actions{display:flex;gap:5px}.mini{border:1px solid var(--line);background:#ffffff08;border-radius:9px;padding:6px 8px;font-size:10px}.empty{border:1px dashed #ffffff24;border-radius:16px;padding:22px;text-align:center;color:var(--muted);font-size:11px;line-height:1.9}
+.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.feature{padding:18px;border-radius:18px;border:1px solid var(--line);background:var(--panel)}.feature .f-icon{font-size:23px}.feature h3{font-size:13px;margin:10px 0 6px}.feature p{font-size:10px;color:var(--muted);line-height:1.9;margin:0}
+.profile-head{display:flex;align-items:center;gap:17px}.profile-avatar{width:76px;height:76px;border-radius:25px;background:linear-gradient(145deg,#ff4967,#650a25);display:grid;place-items:center;font-size:27px;font-weight:900;box-shadow:0 12px 30px #ff304d2a}.profile-head h2{margin:0 0 7px;font-size:20px}.profile-head p{margin:0;color:var(--muted);font-size:11px;direction:ltr}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:#1b1d27;border:1px solid #ffffff20;box-shadow:0 15px 40px #0009;padding:12px 18px;border-radius:14px;font-size:11px;opacity:0;pointer-events:none;transition:.25s;z-index:50;max-width:90vw;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.mobile-nav{display:none}
+footer{text-align:center;color:#666a7a;font-size:9px;padding:30px 10px 5px;line-height:2}footer b{color:#ff7187;letter-spacing:1px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{display:none}.mobile-nav{display:flex;position:fixed;bottom:10px;left:10px;right:10px;z-index:30;justify-content:space-around;gap:3px;padding:8px;background:rgba(13,14,21,.92);border:1px solid var(--line);backdrop-filter:blur(20px);border-radius:19px;box-shadow:0 10px 35px #0009}.mobile-nav button{border:0;background:none;color:#9b9cab;padding:8px 9px;border-radius:12px;font-size:9px;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:48px}.mobile-nav button.active{color:#ff8093;background:#ff304d18}.mobile-nav span{font-size:17px}.app{padding:12px 12px 95px}.topbar{top:7px;height:65px;border-radius:19px;padding:9px 12px}.brand-mark{width:40px;height:40px}.layout{margin-top:14px}.hero{padding:23px;min-height:220px}.stats{grid-template-columns:repeat(2,1fr)}.quick-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.brand-name{font-size:13px}.brand-sub{font-size:8px}.hero{padding:21px;border-radius:22px}.hero-row{display:block}.status-pill{display:inline-block;margin-top:18px}.hero h1{font-size:27px}.stats{gap:8px}.stat{padding:13px}.stat strong{font-size:20px}.quick-grid{gap:8px}.quick{padding:12px;gap:9px}.quick .q-icon{width:37px;height:37px}.quick b{font-size:11px}.project-grid,.two-col{grid-template-columns:1fr}.feature-grid{grid-template-columns:1fr}.section-head{margin-top:21px}.timer-ring{width:195px;height:195px}.timer-time{font-size:32px}}
+body.reduce-motion-user *,body.reduce-motion-user *:before,body.reduce-motion-user *:after{animation:none!important;transition:none!important}body.reduce-motion-user #ambient{opacity:0!important}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+/* PSYCHO HYBRID SYSTEM LAYER */
+:root{--wallpaper-a:#180712;--wallpaper-b:#070910}
+body{background:radial-gradient(ellipse at 15% 0%,var(--wallpaper-a),transparent 48%),linear-gradient(145deg,var(--wallpaper-b),#08090e 62%)}
+.topbar,.sidebar,.card,.stat,.quick,.feature{box-shadow:0 16px 42px #0003,inset 0 1px #ffffff08}
+.nav-btn[data-view="ai"],.nav-btn[data-view="monitor"],.nav-btn[data-view="wallpapers"],.nav-btn[data-view="achievements"],.nav-btn[data-view="windows"]{border:1px solid transparent}
+.nav-btn[data-view="ai"]:hover,.nav-btn[data-view="monitor"]:hover,.nav-btn[data-view="wallpapers"]:hover,.nav-btn[data-view="achievements"]:hover,.nav-btn[data-view="windows"]:hover{border-color:#ff304d35}
+.ai-shell{background:linear-gradient(145deg,#10121c,#080910);border:1px solid #ff304d45;border-radius:22px;padding:14px;box-shadow:inset 0 0 35px #ff304d0a}.ai-top{display:flex;align-items:center;gap:12px;padding:8px 6px 14px;border-bottom:1px solid var(--line)}.ai-orb{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(145deg,#ff405d,#6d0c29);font-weight:1000;box-shadow:0 0 25px #ff304d40}.ai-top b{font-size:13px}.ai-top small{display:block;color:var(--green);font-size:10px;margin-top:5px}.ai-chat{height:340px;overflow:auto;display:flex;flex-direction:column;gap:12px;padding:15px 3px}.ai-msg{max-width:88%;padding:12px 14px;border-radius:15px;font-size:12px;line-height:2;white-space:pre-wrap;overflow-wrap:anywhere}.ai-msg.bot{align-self:flex-start;background:#ffffff0b;border:1px solid #ffffff12;border-top-right-radius:4px}.ai-msg.user{align-self:flex-end;background:linear-gradient(135deg,#9d1735,#5b1027);border:1px solid #ff526c45;border-top-left-radius:4px}.ai-compose{display:flex;gap:8px;border-top:1px solid var(--line);padding-top:12px}.ai-compose input{flex:1;min-width:0;background:#080910;border:1px solid var(--line);border-radius:13px;padding:12px;color:white;font-size:12px}.ai-suggestions{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.ai-suggestions button{border:1px solid #ff304d35;background:#ff304d0c;color:#ffc0ca;border-radius:99px;padding:7px 10px;font-size:10px}
+
+
+
+.wallpaper-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.wallpaper-choice{min-height:105px;border:1px solid var(--line);border-radius:17px;position:relative;overflow:hidden;text-align:right;padding:13px;background:linear-gradient(135deg,var(--wa),var(--wb));}.wallpaper-choice:after{content:'Ψ';position:absolute;left:10px;bottom:-28px;font-size:100px;font-weight:900;color:#ffffff18}.wallpaper-choice b,.wallpaper-choice small{position:relative;z-index:1;display:block}.wallpaper-choice small{margin-top:6px;color:#ffffffa8;font-size:10px}
+.monitor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.monitor-tile{background:#ffffff08;border:1px solid var(--line);border-radius:16px;padding:16px}.monitor-tile small{display:block;color:var(--muted);font-size:10px}.monitor-tile strong{display:block;margin-top:9px;font-size:18px;direction:ltr;text-align:right;overflow-wrap:anywhere}
+.achievement{display:flex;align-items:center;gap:13px;padding:14px;border:1px solid var(--line);border-radius:16px;background:#ffffff06}.achievement .medal{width:43px;height:43px;border-radius:14px;display:grid;place-items:center;background:#ff304d20;font-size:22px;filter:grayscale(1);opacity:.55}.achievement.unlocked .medal{filter:none;opacity:1;box-shadow:0 0 22px #ff304d28}.achievement p{margin:5px 0 0;color:var(--muted);font-size:10px;line-height:1.8}
+.window-layer{position:fixed;inset:0;z-index:60;pointer-events:none}.app-window{position:absolute;top:18%;left:10%;width:min(440px,82vw);max-height:65vh;overflow:auto;pointer-events:auto;border:1px solid #ff526c75;border-radius:18px;background:rgba(13,14,22,.96);backdrop-filter:blur(20px);box-shadow:0 25px 90px #000b}.window-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:#ff304d18;border-bottom:1px solid var(--line);cursor:move;touch-action:none}.window-head b{font-size:12px}.window-body{padding:15px;font-size:12px;line-height:2}.window-close{border:1px solid var(--line);background:#ffffff10;border-radius:8px;padding:4px 9px}.boot-screen{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 42%,#4a0b20,#09090e 58%);display:grid;place-items:center;text-align:center;transition:opacity .5s,visibility .5s}.boot-screen.hidden{opacity:0;visibility:hidden;pointer-events:none}.boot-logo{width:100px;height:100px;margin:auto;border-radius:30px;display:grid;place-items:center;font-size:45px;font-weight:1000;background:linear-gradient(145deg,#ff405d,#7c0927);box-shadow:0 0 70px #ff304d55;animation:pulse 2s infinite}.boot-screen h1{letter-spacing:4px;font-size:clamp(24px,6vw,42px);margin:24px 0 5px}.boot-screen p{color:#aaa;font-size:11px;letter-spacing:3px;direction:ltr}.boot-screen .btn{margin-top:22px}
+.mobile-nav{overflow-x:auto;justify-content:flex-start}.mobile-nav button{flex:0 0 auto}
+@media(max-width:560px){.wallpaper-grid,.monitor-grid{grid-template-columns:1fr}.app-window{left:4%;width:92%;top:13%}}
+
+</style>
+</head>
+<body>
+<canvas id="ambient"></canvas><div class="grid-bg"></div><div class="bg-orb"></div><div class="bg-orb two"></div>
+<div class="boot-screen" id="bootScreen"><div><div class="boot-logo">Ψ</div><h1>PSYCHO OS</h1><p>NEXUS HYBRID SYSTEM</p><button class="btn primary" id="bootEnter">ورود به سیستم</button></div></div>
+<div class="window-layer" id="windowLayer"></div>
+<div class="app">
+<header class="topbar">
+ <div class="brand"><div class="brand-mark">Ψ</div><div><div class="brand-name">PSYCHO OS</div><div class="brand-sub">NEXUS HYBRID</div></div></div>
+ <div class="top-actions"><button class="icon-btn" id="clockBtn" title="ساعت">◷</button><button class="icon-btn" id="themeBtn" title="تغییر جلوه">◈</button><button class="avatar-btn" id="profileShortcut">V</button></div>
+</header>
+<div class="layout">
+<aside class="sidebar">
+ <div class="nav-label">WORKSPACE</div>
+ <button class="nav-btn active" data-view="home"><span class="ico">⌂</span>داشبورد اصلی</button>
+ <button class="nav-btn" data-view="projects"><span class="ico">▣</span>پروژه‌ها</button>
+ <button class="nav-btn" data-view="reminders"><span class="ico">♧</span>یادآوری‌ها</button>
+ <div class="nav-label">DISCOVER</div>
+ <button class="nav-btn" data-view="learn"><span class="ico">⌘</span>مرکز یادگیری</button>
+ <button class="nav-btn" data-view="profile"><span class="ico">◉</span>پروفایل من</button>
+ <button class="nav-btn" data-view="about"><span class="ico">✦</span>درباره PSYCHO</button>
+ <button class="nav-btn" data-view="ai"><span class="ico">✦</span>PSYCHO AI</button>
+ <button class="nav-btn" data-view="monitor"><span class="ico">▤</span>وضعیت سیستم</button>
+ <button class="nav-btn" data-view="wallpapers"><span class="ico">▧</span>مرکز والپیپر</button>
+ <button class="nav-btn" data-view="achievements"><span class="ico">🏆</span>دستاوردها</button>
+ <button class="nav-btn" data-view="windows"><span class="ico">▣</span>مدیریت پنجره‌ها</button>
+ <button class="nav-btn" data-view="settings"><span class="ico">⚙</span>تنظیمات و پشتیبان</button>
+ <div class="side-bottom"><b>سیستم آماده است</b><p>محیط شخصی برای مدیریت پروژه‌ها، یادآوری‌ها و ابزارهای اختصاصی.</p></div>
+</aside>
+<main>
+<section class="view active" id="view-home">
+ <div class="hero"><div class="hero-row"><div><div class="eyebrow">WELCOME TO YOUR CONTROL CENTER</div><h1>فرماندهی با <span style="color:#ff647e">PSYCHO</span></h1><p>یک مرکز فرماندهی برای مدیریت پروژه‌ها، یادآوری‌ها، ابزارها و یادگیری. همه‌چیز مرتب، سریع و در دسترس توست.</p><div class="hero-actions"><button class="btn primary" data-go="projects">مشاهده پروژه‌ها ←</button></div></div><div class="status-pill">● سیستم فعال</div></div></div>
+ <div class="stats">
+  <div class="stat"><span class="s-icon">♧</span><strong id="statReminders">۰</strong><small>یادآوری ثبت‌شده</small></div>
+  <div class="stat"><span class="s-icon">▣</span><strong>۰۳</strong><small>پروژه معرفی‌شده</small></div>
+ </div>
+ <div class="section-head"><h2>دسترسی سریع</h2><span>QUICK ACTIONS</span></div>
+ <div class="quick-grid">
+  
+  <button class="quick" data-go="ai"><span class="q-icon">✦</span><span><b>PSYCHO AI</b><small>دستیار اختصاصی سیستم</small></span></button>
+  <button class="quick" data-go="settings"><span class="q-icon">⚙</span><span><b>پشتیبان‌گیری</b><small>از اطلاعاتت نسخه بگیر</small></span></button>
+  <button class="quick" data-go="reminders"><span class="q-icon">♧</span><span><b>یادآوری جدید</b><small>چیزی از قلم نیفتد</small></span></button>
+  <button class="quick" data-go="projects"><span class="q-icon">▣</span><span><b>پروژه‌ها</b><small>مسیر ساخت را ببین</small></span></button>
+  <button class="quick" data-go="learn"><span class="q-icon">⌘</span><span><b>یادگیری</b><small>دانش و مهارت</small></span></button>
+  <button class="quick" data-go="profile"><span class="q-icon">◉</span><span><b>پروفایل</b><small>تنظیم اطلاعات</small></span></button>
+ </div>
+ <div class="section-head"><h2>پروژه‌های شاخص</h2><button class="text-link" data-go="projects">همه پروژه‌ها ←</button></div>
+ <div class="project-grid">
+  <article class="card project" style="--accent:#ff304d"><div class="project-top"><span class="project-symbol">🎮</span><span class="tag">GAME DEVELOPMENT</span></div><div><h3>زیرزمین شهر فرش</h3><p>ماجراجویی سه‌بعدی با ۱۵ طبقه، معماهای ریاضی، شخصیت‌ها و تعقیب‌کننده‌ها.</p><div class="project-foot"><span class="muted">پروژه بازی‌سازی</span><button class="text-link" data-go="projects">جزئیات ←</button></div></div></article>
+  <article class="card project" style="--accent:#7564ff"><div class="project-top"><span class="project-symbol">🧠</span><span class="tag">CREATIVE TECH</span></div><div><h3>PSYCHO GAMES</h3><p>خانه‌ی بازی‌ها و تجربه‌های تعاملی در اکوسیستم PSYCHO.</p><div class="project-foot"><span class="muted">مجموعه بازی‌ها</span><button class="text-link" data-go="projects">جزئیات ←</button></div></div></article>
+ </div>
+</section>
+<section class="view" id="view-projects">
+ <div class="section-head"><h2>پروژه‌ها و جهان‌های ساخته‌شده</h2><span>PROJECT HUB</span></div>
+ <div class="project-grid">
+  <article class="card project" style="--accent:#ff304d"><div class="project-top"><span class="project-symbol">🎮</span><span class="tag">GAME / 3D</span></div><div><h3>زیرزمین شهر فرش</h3><p>یک بازی فرار و بقا در راهروهای تاریک؛ شامل ۱۵ طبقه، انتخاب شخصیت، معماهای رادیکالی و چهار تعقیب‌کننده. هدف: عبور از طبقه‌ها و نجات دوستان.</p><div class="project-foot"><span class="muted">در حال توسعه</span><span class="tag">CORE PROJECT</span></div></div></article>
+  <article class="card project" style="--accent:#7665ff"><div class="project-top"><span class="project-symbol">🕹️</span><span class="tag">GAMING PLATFORM</span></div><div><h3>PSYCHO GAMES</h3><p>مجموعه‌ای برای تجربه و معرفی بازی‌ها؛ قابل گسترش با بازی‌های ساخته‌شده در آینده.</p><div class="project-foot"><span class="muted">زیرمجموعه PSYCHO</span><span class="tag">GAMES</span></div></div></article>
+  <article class="card project" style="--accent:#00c99a"><div class="project-top"><span class="project-symbol">💻</span><span class="tag">WEB / PRODUCTIVITY</span></div><div><h3>PSYCHO OS</h3><p>محیط یکپارچه‌ی مدیریت پروژه‌ها، یادآوری‌ها، ابزارهای شخصی و پشتیبان‌گیری.</p><div class="project-foot"><span class="muted">نسخه وب</span><span class="tag">THIS PLATFORM</span></div></div></article>
+ </div>
+ <div class="card" style="margin-top:14px"><h3 style="font-size:14px;margin:0 0 8px">نقشه راه توسعه</h3><div class="list">
+  <div class="list-item"><span>01</span><div class="item-main"><b>پایه و تجربه کاربری</b><p>طراحی واکنش‌گرا، سرعت مناسب، منوهای روان و ذخیره‌سازی محلی.</p></div><span class="status-pill">آماده</span></div>
+  <div class="list-item"><span>02</span><div class="item-main"><b>بازی و پروژه‌های تعاملی</b><p>اتصال نسخه‌های اجرایی بازی‌ها و نمایش پیشرفت واقعی.</p></div><span class="tag">مرحله بعد</span></div>
+  <div class="list-item"><span>03</span><div class="item-main"><b>حساب و فضای آنلاین</b><p>نیازمند سرور، پایگاه داده و احراز هویت امن.</p></div><span class="tag">نیازمند سرور</span></div>
+ </div></div>
+</section>
+<section class="view" id="view-reminders">
+ <div class="section-head"><h2>مرکز یادآوری‌ها</h2><span>REMINDERS</span></div>
+ <div class="two-col"><div class="card"><h3 style="font-size:14px;margin-top:0">یادآوری جدید</h3><div class="field"><label>عنوان کار</label><input id="remTitle" placeholder="مثلاً انجام تکلیف ریاضی"></div><div class="field"><label>تاریخ و ساعت</label><input id="remDate" type="datetime-local"></div><div class="field"><label>توضیحات (اختیاری)</label><textarea id="remBody" placeholder="جزئیات یادآوری..."></textarea></div><button class="btn primary" id="saveReminder">ثبت یادآوری</button><p class="muted">یادآوری‌ها در همین مرورگر ذخیره می‌شوند. برای اعلان در زمان مقرر، اجازه اعلان مرورگر لازم است و ممکن است مرورگر بسته باشد.</p></div><div class="card"><h3 style="font-size:14px;margin-top:0">فهرست یادآوری‌ها</h3><div class="list" id="remindersList"></div></div></div>
+</section>
+<section class="view" id="view-settings">
+ <div class="section-head"><h2>تنظیمات و پشتیبان‌گیری</h2><span>SYSTEM CONTROL</span></div>
+ <div class="two-col"><div class="card"><h3 style="font-size:14px;margin-top:0">شخصی‌سازی ظاهر</h3><p class="muted">رنگ اصلی محیط را انتخاب کن. انتخابت روی همین دستگاه ذخیره می‌شود.</p>
+  <div class="field"><label>رنگ رابط کاربری</label><select id="accentSelect"><option value="red">قرمز نئونی</option><option value="purple">بنفش</option><option value="blue">آبی</option><option value="green">سبز</option></select></div>
+  <div class="field"><label><input type="checkbox" id="motionToggle" style="width:auto;accent-color:#ff304d"> کاهش حرکت پس‌زمینه</label></div>
+  <button class="btn primary" id="saveSettings">ذخیره تنظیمات</button>
+ </div><div class="card"><h3 style="font-size:14px;margin-top:0">پشتیبان‌گیری اطلاعات</h3><p class="muted">از یادآوری‌ها، پروفایل و تنظیمات یک فایل JSON بساز یا نسخه قبلی را بازیابی کن.</p>
+  <button class="btn primary" id="exportData">دریافت فایل پشتیبان</button>
+  <div class="field"><label>بازیابی از فایل پشتیبان JSON</label><input type="file" id="importData" accept=".json,application/json"></div>
+  <p class="muted">اطلاعات فقط در حافظه همین مرورگر نگهداری می‌شوند. برای انتقال به دستگاه دیگر از پشتیبان‌گیری استفاده کن.</p>
+ </div></div>
+ <div class="card" style="margin-top:14px"><h3 style="font-size:14px;margin-top:0">وضعیت سیستم</h3><p class="muted">نسخه NEXUS HYBRID · ذخیره‌سازی محلی · بدون نیاز به حساب کاربری</p><button class="btn" id="clearData">پاک‌کردن اطلاعات محلی</button></div>
+</section>
+<section class="view" id="view-learn">
+ <div class="section-head"><h2>مرکز یادگیری</h2><span>LEARN & BUILD</span></div>
+ <div class="feature-grid">
+  <article class="feature"><div class="f-icon">📐</div><h3>ریاضی</h3><p>تمرین مرحله‌ای، حل مسئله، جذر و رادیکال و مرور نکته‌های مهم.</p></article>
+  <article class="feature"><div class="f-icon">🧪</div><h3>علوم تجربی</h3><p>مفاهیم، آزمایش‌ها، پرسش‌های مفهومی و جمع‌بندی فصل‌ها.</p></article>
+  <article class="feature"><div class="f-icon">🌍</div><h3>مطالعات اجتماعی</h3><p>مرور تاریخ، جغرافیا، نقشه‌ها و نکته‌های امتحانی.</p></article>
+  <article class="feature"><div class="f-icon">⌨️</div><h3>برنامه‌نویسی</h3><p>HTML، CSS، JavaScript و ساخت پروژه‌های واقعی و کوچک.</p></article>
+ </div>
+ <div class="card" style="margin-top:14px"><h3 style="font-size:14px;margin-top:0">پیشنهاد شروع</h3><p class="muted">یک مبحث را انتخاب کن و مسیر یادگیری‌ات را مشخص کن. این بخش فعلاً مسیرهای یادگیری را معرفی می‌کند؛ درس‌نامه و آزمون تعاملی در این نسخه متصل نشده‌اند.</p></div>
+</section>
+
+<section class="view" id="view-ai">
+ <div class="section-head"><h2>PSYCHO AI</h2><span>YOUR PERSONAL DIGITAL ASSISTANT</span></div>
+ <div class="card"><div class="ai-shell"><div class="ai-top"><div class="ai-orb">Ψ</div><div><b>PSYCHO AI / NEXUS</b><small>● دستیار محلی آماده پاسخ‌گویی</small></div><button class="mini" id="clearAi" style="margin-right:auto">پاک‌کردن گفتگو</button></div>
+ <div class="ai-chat" id="aiChat" aria-live="polite"><div class="ai-msg bot">سلام! من PSYCHO AI هستم؛ دستیار اختصاصی داخل PSYCHO OS.\nمی‌تونم درباره پروژه‌ها، بازی‌سازی، برنامه‌نویسی، درس‌ها و امکانات همین سیستم کمکت کنم. از کجا شروع کنیم؟</div></div>
+ <div class="ai-suggestions"><button type="button" data-prompt="وضعیت پروژه‌های من چیه؟">وضعیت پروژه‌ها</button><button type="button" data-prompt="برای درس خوندن برنامه بده">برنامه مطالعه</button><button type="button" data-prompt="برای بازی زیرزمین شهر فرش ایده بده">ایده بازی‌سازی</button><button type="button" data-prompt="چه امکاناتی در PSYCHO OS دارم؟">راهنمای سیستم</button></div>
+ <form class="ai-compose" id="aiForm"><input id="aiInput" autocomplete="off" placeholder="پیامت رو برای PSYCHO AI بنویس..." maxlength="600"><button class="btn primary" type="submit">ارسال ↗</button></form></div>
+ <p class="muted">نسخه فعلی دستیار به‌صورت محلی و بدون اتصال اینترنت کار می‌کند؛ پاسخ‌هایش بر پایه قابلیت‌های داخلی و الگوهای از پیش تعریف‌شده است. برای هوش مصنوعی مولد آنلاین و پاسخ آزاد، اتصال امن به سرویس هوش مصنوعی و کلید API روی سرور لازم است.</p></div>
+</section>
+<section class="view" id="view-monitor">
+ <div class="section-head"><h2>وضعیت سیستم</h2><span>SYSTEM MONITOR</span></div>
+ <div class="monitor-grid"><div class="monitor-tile"><small>ساعت محلی</small><strong id="monClock">--:--:--</strong></div><div class="monitor-tile"><small>وضعیت اتصال</small><strong id="monOnline">--</strong></div><div class="monitor-tile"><small>اندازه نمایشگر</small><strong id="monScreen">--</strong></div><div class="monitor-tile"><small>زبان مرورگر</small><strong id="monLang">--</strong></div><div class="monitor-tile"><small>حافظه ذخیره‌سازی سایت</small><strong id="monStorage">در حال بررسی</strong></div><div class="monitor-tile"><small>نسخه محیط</small><strong>NEXUS HYBRID</strong></div></div>
+ <p class="muted" style="margin-top:12px">این صفحه فقط اطلاعاتی را نشان می‌دهد که مرورگر اجازه دسترسی به آن‌ها را می‌دهد؛ دمای گوشی، RAM واقعی و پردازنده قابل خواندن نیستند.</p>
+</section>
+<section class="view" id="view-wallpapers">
+ <div class="section-head"><h2>مرکز والپیپر</h2><span>WALLPAPER CENTER</span></div>
+ <div class="card"><p class="muted">پس‌زمینه دلخواهت را انتخاب کن. انتخاب روی همین مرورگر ذخیره می‌شود.</p><div class="wallpaper-grid">
+ <button class="wallpaper-choice" style="--wa:#400b20;--wb:#080910" data-wallpaper="red"><b>RED MATRIX</b><small>قرمز سایبرپانک</small></button>
+ <button class="wallpaper-choice" style="--wa:#211044;--wb:#080910" data-wallpaper="purple"><b>NEBULA</b><small>بنفش کیهانی</small></button>
+ <button class="wallpaper-choice" style="--wa:#082a48;--wb:#080910" data-wallpaper="blue"><b>DEEP CYBER</b><small>آبی آینده‌نگر</small></button>
+ <button class="wallpaper-choice" style="--wa:#07382d;--wb:#080910" data-wallpaper="green"><b>TOXIC GRID</b><small>سبز دیجیتال</small></button>
+ </div></div>
+</section>
+<section class="view" id="view-achievements">
+ <div class="section-head"><h2>دستاوردهای PSYCHO</h2><span>ACHIEVEMENTS</span></div>
+ <div class="card"><p class="muted">نشان‌ها با استفاده واقعی از امکانات سیستم باز می‌شوند.</p><div class="list" id="achievementList"></div></div>
+</section>
+<section class="view" id="view-windows">
+ <div class="section-head"><h2>مدیریت پنجره‌ها</h2><span>MULTI-WINDOW</span></div>
+ <div class="card"><p class="muted">چند ابزار را هم‌زمان در پنجره‌های شناور باز کن. پنجره‌ها را می‌توانی با گرفتن نوار بالایی جابه‌جا کنی.</p><div class="quick-grid">
+ <button class="quick" data-window="ai"><span class="q-icon">✦</span><span><b>PSYCHO AI</b><small>دستیار اختصاصی</small></span></button>
+ <button class="quick" data-window="monitor"><span class="q-icon">▤</span><span><b>مانیتور سیستم</b><small>اطلاعات مرورگر</small></span></button>
+ <button class="quick" data-window="wallpapers"><span class="q-icon">▧</span><span><b>والپیپرها</b><small>تغییر پس‌زمینه</small></span></button>
+ <button class="quick" data-window="reminders"><span class="q-icon">♧</span><span><b>یادآوری‌ها</b><small>مرکز یادآوری</small></span></button>
+ </div></div>
+</section>
+
+<section class="view" id="view-profile">
+ <div class="section-head"><h2>پروفایل شخصی</h2><span>LOCAL PROFILE</span></div>
+ <div class="card"><div class="profile-head"><div class="profile-avatar" id="profileInitial">V</div><div><h2 id="profileNameShow">VICTOR</h2><p id="profileId">PSY-LOCAL</p></div></div><div class="field" style="max-width:420px;margin-top:24px"><label>نام نمایشی</label><input id="profileName" maxlength="28" placeholder="نام نمایشی"></div><button class="btn primary" id="saveProfile">ذخیره پروفایل</button><p class="muted">این پروفایل محلی است و فقط روی همین مرورگر و دستگاه ذخیره می‌شود؛ حساب آنلاین یا همگام‌سازی ابری نیست.</p></div>
+</section>
+<section class="view" id="view-about">
+ <div class="hero"><div class="eyebrow">THE MINDSET BEHIND THE SYSTEM</div><h1>ساخته‌شده برای <span style="color:#ff647e">خلق کردن</span></h1><p>PSYCHO یک فضای دیجیتال با تمرکز بر بازی‌سازی، یادگیری، خلاقیت و ابزارهای شخصی است.</p></div>
+ <div class="section-head"><h2>تیم سازندگان</h2><span>CREATORS</span></div>
+ <div class="feature-grid">
+  <div class="feature"><div class="f-icon">⚡</div><h3>ARDALAN MO'AYED PANAH</h3><p>همکار پروژه</p></div>
+  <div class="feature"><div class="f-icon">🎮</div><h3>AHMADALI ESMAILI</h3><p>همکار پروژه</p></div>
+  <div class="feature"><div class="f-icon">✦</div><h3>SEYYED AMIR ALI ABBASI</h3><p>سازنده و توسعه‌دهنده</p></div>
+ </div>
+ <div class="card" style="margin-top:14px"><h3 style="font-size:14px">راه‌های ارتباطی</h3><p class="muted">Telegram: @VEXRIONN<br>Eitaa: @psychoamir</p></div>
+ <footer>POWERED BY CREATIVITY<br><b>⚡ PSYCHOVICTOR ⚡</b><br>PSYCHO OS — NEXUS HYBRID</footer>
+</section>
+</main>
+</div>
+<nav class="mobile-nav">
+ <button class="active" data-view="home"><span>⌂</span>خانه</button><button data-view="projects"><span>▣</span>پروژه‌ها</button><button data-view="reminders"><span>♧</span>یادآوری</button><button data-view="settings"><span>⚙</span>تنظیمات</button><button data-view="profile"><span>◉</span>پروفایل</button><button data-view="ai"><span>✦</span>هوش مصنوعی</button><button data-view="monitor"><span>▤</span>سیستم</button><button data-view="wallpapers"><span>▧</span>والپیپر</button><button data-view="achievements"><span>🏆</span>نشان‌ها</button><button data-view="windows"><span>▣</span>پنجره‌ها</button>
+</nav>
+<div class="toast" id="toast"></div>
+<script>
+(()=>{
+'use strict';
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const store={get(k,d){try{const v=localStorage.getItem('psycho_'+k);return v===null?d:JSON.parse(v)}catch{return d}},set(k,v){try{localStorage.setItem('psycho_'+k,JSON.stringify(v))}catch{toast('ذخیره‌سازی در این مرورگر در دسترس نیست')}}};
+let toastTimer;
+function toast(msg){const el=$('#toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2400)}
+function go(view){$$('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+view));$$('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===view));window.scrollTo({top:0,behavior:'smooth'});}
+$$('[data-view]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.view)));
+$$('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+$('#profileShortcut').addEventListener('click',()=>go('profile'));
+$('#clockBtn').addEventListener('click',()=>toast(new Date().toLocaleString('fa-IR',{dateStyle:'medium',timeStyle:'short'})));
+$('#themeBtn').addEventListener('click',()=>{document.body.classList.toggle('soft-glow');document.querySelectorAll('.bg-orb').forEach(x=>x.style.opacity=document.body.classList.contains('soft-glow')?'.07':'.13');toast('جلوه پس‌زمینه تغییر کرد')});
+// Light particle field: capped DPR and particle count for smooth mobile rendering.
+const canvas=$('#ambient'),ctx=canvas.getContext('2d');let W=0,H=0,pts=[],raf=0;
+function resize(){const d=Math.min(devicePixelRatio||1,1.5);W=innerWidth;H=innerHeight;canvas.width=Math.floor(W*d);canvas.height=Math.floor(H*d);canvas.style.width=W+'px';canvas.style.height=H+'px';ctx.setTransform(d,0,0,d,0,0);const n=Math.min(48,Math.max(18,Math.floor(W/22)));pts=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+.35,vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.16,a:Math.random()*.38+.12}))}
+function draw(){ctx.clearRect(0,0,W,H);for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,75,105,${p.a})`;ctx.fill()}for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const a=pts[i],b=pts[j],dx=a.x-b.x,dy=a.y-b.y,dist=Math.hypot(dx,dy);if(dist<105){ctx.strokeStyle=`rgba(255,65,95,${.075*(1-dist/105)})`;ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}}raf=requestAnimationFrame(draw)}
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){resize();draw();addEventListener('resize',resize,{passive:true})}
+// Reminders
+let reminders=store.get('reminders',[]);
+function renderReminders(){const box=$('#remindersList');box.innerHTML='';if(!reminders.length){box.innerHTML='<div class="empty">یادآوری فعالی نداری.</div>'}else reminders.slice().sort((a,b)=>(a.when||'').localeCompare(b.when||'')).forEach(r=>{const el=document.createElement('div');el.className='list-item';const main=document.createElement('div');main.className='item-main';const title=document.createElement('b');title.textContent=r.title;const body=document.createElement('p');body.textContent=(r.body||'')+(r.when?'\\n'+new Date(r.when).toLocaleString('fa-IR'):'' );main.append(title,body);const del=document.createElement('button');del.className='mini';del.textContent='حذف';del.addEventListener('click',()=>{reminders=reminders.filter(x=>x.id!==r.id);store.set('reminders',reminders);renderReminders();updateStats()});el.append(main,del);box.append(el)})}
+$('#saveReminder').addEventListener('click',async()=>{const title=$('#remTitle').value.trim(),when=$('#remDate').value,body=$('#remBody').value.trim();if(!title){toast('عنوان یادآوری را وارد کن');return}if(!when){toast('زمان یادآوری را انتخاب کن');return}const date=new Date(when);if(Number.isNaN(date.getTime())){toast('زمان انتخاب‌شده معتبر نیست');return}reminders.push({id:Date.now(),title,when:date.toISOString(),body});store.set('reminders',reminders);$('#remTitle').value='';$('#remDate').value='';$('#remBody').value='';renderReminders();updateStats();if('Notification'in window&&Notification.permission==='default'){try{await Notification.requestPermission()}catch{}}toast('یادآوری ثبت شد')});
+function updateStats(){$('#statReminders').textContent=reminders.length.toLocaleString('fa-IR')}
+// Settings, export and restore
+const palettes={red:['#ff304d','#a80e2b','rgba(255,35,70,.22)'],purple:['#9b70ff','#5a35c7','rgba(135,90,255,.22)'],blue:['#4d9dff','#205cb4','rgba(55,130,255,.22)'],green:['#39d9a0','#13865f','rgba(35,210,145,.22)']};
+function applySettings(){const cfg=store.get('settings',{accent:'red',reduced:false}),c=palettes[cfg.accent]||palettes.red;document.documentElement.style.setProperty('--red',c[0]);document.documentElement.style.setProperty('--red2',c[1]);document.documentElement.style.setProperty('--glow',c[2]);$('#accentSelect').value=cfg.accent;$('#motionToggle').checked=!!cfg.reduced;document.body.classList.toggle('reduce-motion-user',!!cfg.reduced)}
+$('#saveSettings').addEventListener('click',()=>{store.set('settings',{accent:$('#accentSelect').value,reduced:$('#motionToggle').checked});applySettings();toast('تنظیمات ذخیره شد')});
+$('#exportData').addEventListener('click',()=>{const data={app:'PSYCHO OS',version:'NEXUS HYBRID',exportedAt:new Date().toISOString(),reminders,profile,settings:store.get('settings',{accent:'red',reduced:false}),wallpaper:store.get('wallpaper','red')};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='PSYCHO_OS_BACKUP.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('فایل پشتیبان آماده شد')});
+$('#importData').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{const data=JSON.parse(await f.text());if(!data||!Array.isArray(data.reminders))throw Error('invalid');reminders=data.reminders;profile=data.profile&&typeof data.profile==='object'?data.profile:profile;store.set('reminders',reminders);store.set('profile',profile);if(data.settings)store.set('settings',data.settings);if(data.wallpaper)store.set('wallpaper',data.wallpaper);renderReminders();renderProfile();applySettings();updateStats();toast('پشتیبان با موفقیت بازیابی شد')}catch{toast('فایل پشتیبان معتبر نیست')}e.target.value=''});
+$('#clearData').addEventListener('click',()=>{if(!confirm('همه یادآوری‌ها، پروفایل و تنظیمات محلی پاک شوند؟'))return;['tasks','reminders','profile','settings','wallpaper','achievements','visits','terminalUsed','aiUsed','multiUsed'].forEach(k=>localStorage.removeItem('psycho_'+k));reminders=[];profile={name:'VICTOR',id:'PSY-LOCAL'};renderReminders();renderProfile();applySettings();updateStats();toast('اطلاعات محلی پاک شد')});
+ // Profile
+let profile=store.get('profile',{name:'VICTOR',id:'PSY-LOCAL'});
+if(!profile.id||profile.id==='PSY-LOCAL')profile.id='PSY-'+Math.random().toString(36).slice(2,8).toUpperCase();
+function renderProfile(){$('#profileName').value=profile.name;$('#profileNameShow').textContent=profile.name;$('#profileInitial').textContent=(profile.name.trim()[0]||'P').toUpperCase();$('#profileId').textContent=profile.id;$('#profileShortcut').textContent=(profile.name.trim()[0]||'P').toUpperCase();store.set('profile',profile)}
+$('#saveProfile').addEventListener('click',()=>{const name=$('#profileName').value.trim();if(!name){toast('نام نمایشی را وارد کن');return}profile.name=name;renderProfile();toast('پروفایل محلی ذخیره شد')});
+renderReminders();renderProfile();applySettings();updateStats();
+
+// Hybrid features: AI assistant, monitor, wallpapers, achievements, boot and multi-window.
+const wallpaperMap={red:['#180712','#070910'],purple:['#1c1038','#070910'],blue:['#08233b','#070910'],green:['#073329','#070910']};
+function setWallpaper(name,save=true){const pair=wallpaperMap[name]||wallpaperMap.red;document.documentElement.style.setProperty('--wallpaper-a',pair[0]);document.documentElement.style.setProperty('--wallpaper-b',pair[1]);if(save)store.set('wallpaper',name);$$('[data-wallpaper]').forEach(b=>b.style.borderColor=b.dataset.wallpaper===name?'#ff526c':'var(--line)');toast('والپیپر تغییر کرد')}
+setWallpaper(store.get('wallpaper','red'),false);
+$$('[data-wallpaper]').forEach(b=>b.addEventListener('click',()=>setWallpaper(b.dataset.wallpaper)));
+$('#bootEnter').addEventListener('click',()=>$('#bootScreen').classList.add('hidden'));
+const aiChat=$('#aiChat');
+function addAiMessage(text,who='bot'){const el=document.createElement('div');el.className='ai-msg '+who;el.textContent=text;aiChat.append(el);aiChat.scrollTop=aiChat.scrollHeight;}
+function psychoReply(raw){const q=raw.trim().toLowerCase();
+ if(/سلام|درود|hi|hello/.test(q))return 'سلام! من PSYCHO AI هستم. آماده‌ام برای ایده‌پردازی، درس، برنامه‌نویسی و پروژه‌هات کمکت کنم.';
+ if(/پروژه|زیرزمین|شهر فرش|بازی/.test(q))return 'پروژه شاخصت «زیرزمین شهر فرش» است؛ یک بازی فرار سه‌بعدی با ۱۵ طبقه، شخصیت‌های قابل انتخاب و معماهای ریاضی. پیشنهاد من: اول یک قابلیت را انتخاب کن، بعد آن را جداگانه طراحی و آزمایش کنیم تا نسخه اصلی پایدار بماند.';
+ if(/درس|مطالعه|امتحان|مدرسه|برنامه/.test(q))return 'برای مطالعه مؤثر، یک مبحث مشخص انتخاب کن؛ ۲۵ دقیقه با تمرکز بخوان، ۵ دقیقه استراحت کن و در پایان بدون نگاه‌کردن به کتاب، نکته‌ها را برای خودت توضیح بده. اگر نام درس و مبحث را بگویی، برنامه دقیق‌تری می‌چینم.';
+ if(/کد|برنامه.?نویس|html|css|javascript|جاوااسکریپت/.test(q))return 'برای ساخت وب‌اپ، HTML ساختار را می‌سازد، CSS ظاهر را طراحی می‌کند و JavaScript رفتار و تعامل را کنترل می‌کند. بگو دقیقاً چه چیزی می‌خواهی بسازی تا مرحله‌به‌مرحله راهنمایی‌ات کنم.';
+ if(/امکانات|راهنما|کمک|help|چه کار/.test(q))return 'در PSYCHO OS می‌توانی پروژه‌ها را ببینی، یادآوری ثبت کنی، ظاهر را شخصی‌سازی کنی، از اطلاعات پشتیبان بگیری، والپیپر عوض کنی، وضعیت مرورگر را ببینی و دستاوردها را باز کنی. همین‌جا هم می‌توانی سؤال بپرسی.';
+ if(/یادآور|یادآوری/.test(q))return 'در حال حاضر '+reminders.length+' یادآوری در این مرورگر ذخیره شده است. برای ساخت یادآوری جدید، از منوی «یادآوری‌ها» استفاده کن.';
+ if(/ساعت|تاریخ|امروز/.test(q))return 'تاریخ امروز: '+new Date().toLocaleDateString('fa-IR')+'\nساعت محلی دستگاه: '+new Date().toLocaleTimeString('fa-IR');
+ if(/ایده|پیشنهاد/.test(q))return 'یک ایده برای ارتقای PSYCHO: یک مرکز افزونه بسازیم که ابزارهای کوچک مثل تبدیل‌گر واحدها، تایمر مطالعه و فهرست منابع پروژه را در قالب پنجره‌های جداگانه باز کند. بهتر است هر ابزار سبک و مستقل باشد.';
+ if(/تشکر|مرسی|ممنون/.test(q))return 'خواهش می‌کنم! هر وقت خواستی، موضوع بعدی رو بگو تا با هم جلو ببریم.';
+ return 'متوجه موضوعت شدم، اما دانش من در این نسخه محدود به قابلیت‌های داخلی PSYCHO و چند موضوع پرکاربرد است. اگر سؤال را دقیق‌تر بنویسی یا بگویی مربوط به درس، بازی‌سازی یا برنامه‌نویسی است، بهتر راهنمایی‌ات می‌کنم.\n\nتوجه: این نسخه محلی است و هنوز به یک مدل هوش مصنوعی آنلاین متصل نیست.';
+}
+function sendToPsycho(text){const msg=text.trim();if(!msg)return;addAiMessage(msg,'user');$('#aiInput').value='';const reply=psychoReply(msg);setTimeout(()=>addAiMessage(reply,'bot'),180);store.set('aiUsed',true);renderAchievements();}
+$('#aiForm').addEventListener('submit',e=>{e.preventDefault();sendToPsycho($('#aiInput').value)});
+$$('[data-prompt]').forEach(b=>b.addEventListener('click',()=>sendToPsycho(b.dataset.prompt)));
+$('#clearAi').addEventListener('click',()=>{aiChat.innerHTML='';addAiMessage('گفتگو پاک شد. من PSYCHO AI هستم؛ چه کمکی از دستم برمیاد؟');});
+function refreshMonitor(){if(!$('#monClock'))return;$('#monClock').textContent=new Date().toLocaleTimeString('fa-IR');$('#monOnline').textContent=navigator.onLine?'ONLINE':'OFFLINE';$('#monScreen').textContent=screen.width+' × '+screen.height;$('#monLang').textContent=navigator.language||'نامشخص';try{let bytes=0;for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith('psycho_'))bytes+=(localStorage.getItem(k)||'').length*2}$('#monStorage').textContent=bytes<1024?(bytes+' B'):(bytes/1024).toFixed(1)+' KB'}catch{$('#monStorage').textContent='نامشخص'}}
+refreshMonitor();setInterval(refreshMonitor,1000);addEventListener('online',refreshMonitor);addEventListener('offline',refreshMonitor);
+let visits=store.get('visits',{});function trackViews(){const active=$('.view.active');if(!active)return;const key=active.id.replace('view-','');visits[key]=(visits[key]||0)+1;store.set('visits',visits);renderAchievements()}$$('[data-view]').forEach(b=>b.addEventListener('click',()=>setTimeout(trackViews,0)));trackViews();
+function renderAchievements(){const box=$('#achievementList');if(!box)return;const unlocked=[['profile','👤','هویت‌یافته','پروفایل خودت را ذخیره کن',!!store.get('profile',null)],['reminder','⏰','یادآور','اولین یادآوری را ثبت کن',reminders.length>0],['ai','✦','گفتگو با PSYCHO AI','اولین پیام را برای دستیار بفرست',!!store.get('aiUsed',false)],['explorer','🧭','کاوشگر','از سه بخش مختلف سیستم بازدید کن',Object.keys(visits).filter(k=>visits[k]>0).length>=3],['customizer','🎨','طراح محیط','والپیپر دلخواهت را انتخاب کن',!!store.get('wallpaper',null)],['multi','▣','چندپنجره‌ای','اولین پنجره شناور را باز کن',!!store.get('multiUsed',false)]];box.innerHTML='';unlocked.forEach(a=>{const el=document.createElement('div');el.className='achievement'+(a[4]?' unlocked':'');const medal=document.createElement('div');medal.className='medal';medal.textContent=a[1];const info=document.createElement('div');info.innerHTML='<b>'+a[2]+'</b><p>'+a[3]+'</p>';el.append(medal,info);box.append(el)})}
+const windowContents={ai:'<b>PSYCHO AI</b><p>دستیار اختصاصی PSYCHO برای ایده‌پردازی و راهنمایی.</p><button class="btn small" data-jump="ai">باز کردن دستیار</button>',monitor:'<b>SYSTEM MONITOR</b><p>وضعیت اتصال: '+(navigator.onLine?'ONLINE':'OFFLINE')+'</p><p>نمایشگر: '+screen.width+' × '+screen.height+'</p>',wallpapers:'<b>WALLPAPER CENTER</b><p>انتخاب سریع پس‌زمینه:</p><button class="mini" data-mini-wall="red">RED</button> <button class="mini" data-mini-wall="purple">PURPLE</button> <button class="mini" data-mini-wall="blue">BLUE</button> <button class="mini" data-mini-wall="green">GREEN</button>',reminders:'<b>REMINDERS</b><p>یادآوری‌های ثبت‌شده: '+reminders.length+'</p><button class="btn small" data-jump="reminders">باز کردن یادآوری‌ها</button>'};
+let winCount=0;function openWindow(name){const layer=$('#windowLayer'),id='psy-window-'+(++winCount),w=document.createElement('div');w.className='app-window';w.id=id;w.style.top=(15+(winCount%5)*5)+'%';w.style.left=(7+(winCount%4)*5)+'%';const head=document.createElement('div');head.className='window-head';const title=document.createElement('b');title.textContent='PSYCHO / '+name.toUpperCase();const close=document.createElement('button');close.className='window-close';close.textContent='×';close.addEventListener('click',()=>w.remove());head.append(title,close);const body=document.createElement('div');body.className='window-body';body.innerHTML=windowContents[name]||'App unavailable';w.append(head,body);layer.append(w);let dragging=false,dx=0,dy=0;head.addEventListener('pointerdown',e=>{dragging=true;const r=w.getBoundingClientRect();dx=e.clientX-r.left;dy=e.clientY-r.top;head.setPointerCapture(e.pointerId)});head.addEventListener('pointermove',e=>{if(!dragging)return;w.style.left=Math.max(0,Math.min(innerWidth-w.offsetWidth,e.clientX-dx))+'px';w.style.top=Math.max(0,Math.min(innerHeight-70,e.clientY-dy))+'px'});head.addEventListener('pointerup',()=>dragging=false);body.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>{w.remove();go(b.dataset.jump)}));body.querySelectorAll('[data-mini-wall]').forEach(b=>b.addEventListener('click',()=>setWallpaper(b.dataset.miniWall)));store.set('multiUsed',true);renderAchievements()}
+$$('[data-window]').forEach(b=>b.addEventListener('click',()=>openWindow(b.dataset.window)));
+renderAchievements();
+
+})();
+</script>
+</body></html>
